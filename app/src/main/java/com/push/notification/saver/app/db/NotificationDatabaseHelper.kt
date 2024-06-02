@@ -1,4 +1,4 @@
-package com.push.notification.saver.app.services
+package com.push.notification.saver.app.db
 
 import android.content.ContentValues
 import android.content.Context

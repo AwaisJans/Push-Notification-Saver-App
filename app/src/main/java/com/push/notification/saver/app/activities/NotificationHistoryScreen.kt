@@ -2,15 +2,12 @@ package com.push.notification.saver.app.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.push.notification.saver.app.adapter.NotificationAdapter
 import com.push.notification.saver.app.databinding.ActivityNotificationHistoryScreenBinding
-import com.push.notification.saver.app.model.NotificationItem
-import com.push.notification.saver.app.services.AppConfig
-import com.push.notification.saver.app.services.NotificationDatabaseHelper
+import com.push.notification.saver.app.db.NotificationDatabaseHelper
 
 
 class NotificationHistoryScreen : AppCompatActivity() {

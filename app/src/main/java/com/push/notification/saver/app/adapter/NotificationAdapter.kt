@@ -8,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.push.notification.saver.app.R
-import com.push.notification.saver.app.databinding.ActivityPermissionBinding
 import com.push.notification.saver.app.databinding.ItemNotificationsBinding
 import com.push.notification.saver.app.model.NotificationItem
-import com.push.notification.saver.app.services.NotificationDatabaseHelper
+import com.push.notification.saver.app.db.NotificationDatabaseHelper
 
 
 class NotificationAdapter(private val notificationList: List<NotificationItem>) :
@@ -50,9 +48,15 @@ class NotificationAdapter(private val notificationList: List<NotificationItem>) 
                 .setPositiveButton(
                     "OK"
                 ) { dialog, whichButton ->
-                    val browserIntent =
-                        Intent(Intent.ACTION_VIEW, Uri.parse(notification.launchUrl))
-                    context.startActivity(browserIntent)
+
+                    if(notification.launchUrl.isEmpty()){
+                        Toast.makeText(context, "No Launch URL", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        val browserIntent =
+                            Intent(Intent.ACTION_VIEW, Uri.parse(notification.launchUrl))
+                        context.startActivity(browserIntent)
+                    }
                 }.show()
         }
 
