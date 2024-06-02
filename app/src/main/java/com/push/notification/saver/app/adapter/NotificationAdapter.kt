@@ -1,5 +1,6 @@
 package com.push.notification.saver.app.adapter
 
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -17,8 +18,18 @@ import com.push.notification.saver.app.model.NotificationItem
 import com.push.notification.saver.app.db.NotificationDatabaseHelper
 
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.push.notification.saver.app.R
+import com.push.notification.saver.app.model.NotificationItem
+
+
 class NotificationAdapter(private val notificationList: List<NotificationItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
 
 
     private lateinit var b: ItemNotificationsBinding
@@ -26,10 +37,17 @@ class NotificationAdapter(private val notificationList: List<NotificationItem>) 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         b = ItemNotificationsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NotificationVH(b.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_notifications, parent, false)
+        return NotificationVH(view)
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as NotificationVH
+
         val context = holder.itemView.context
         val notification = notificationList[position]
 
@@ -86,4 +104,17 @@ inner class NotificationVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val ivNotificationImage = b.ivNotificationImage
     val ivNotificationDelete = b.ivDeleteNotification
 }
+
+        val notification = notificationList[position]
+        holder.title.text = notification.title
+        holder.message.text = notification.message
+    }
+
+    override fun getItemCount() = notificationList.size
+
+    class NotificationVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val title: TextView = itemView.findViewById(R.id.notificationTitle)
+        val message: TextView = itemView.findViewById(R.id.notificationMessage)
+    }
+
 }

@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     android:orientation="vertical"
+
+    android:orientation="vertical"
+    android:background="@color/bg_color"
+    android:layout_height="match_parent"
+
     tools:context=".activities.FirstScreen">
 
 
@@ -31,6 +37,7 @@
             android:textSize="17sp"
             android:textStyle="bold" />
     </RelativeLayout>
+
 
 
     <RelativeLayout
@@ -81,12 +88,24 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/white"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_notification_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:cornerRadius="7dp"
+
         android:elevation="2dp"
         android:gravity="start|center"
         android:minHeight="70dp"
         android:paddingStart="15dp"
         android:paddingEnd="0dp"
         android:stateListAnimator="@null"
+
         android:text="Practise Screen"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -120,16 +139,39 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/white"
+
+        android:text="Notifications History"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/practiseScreenBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        app:cornerRadius="7dp"
+
         android:elevation="2dp"
         android:gravity="start|center"
         android:minHeight="70dp"
         android:paddingStart="15dp"
         android:paddingEnd="0dp"
         android:stateListAnimator="@null"
+
         android:text="Message"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:cornerRadius="7dp" />
+
+        android:text="Practise Screen"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+
 
 
 </LinearLayout>

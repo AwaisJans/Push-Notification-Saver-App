@@ -3,6 +3,7 @@ package com.push.notification.saver.app.activities
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +19,11 @@ import com.push.notification.saver.app.db.NotificationDatabaseHelper
 import com.push.notification.saver.app.services.AppConfig
 
 //import com.push.notification.saver.app.services.MyForegroundService
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.push.notification.saver.app.databinding.ActivityFirstScreenBinding
+import com.push.notification.saver.app.model.NotificationItem
+
 
 
 class FirstScreen : AppCompatActivity() {
@@ -55,6 +61,15 @@ class FirstScreen : AppCompatActivity() {
 
 
 
+
+    }
+
+
+
+
+        b.btnNotificationHistory.setOnClickListener{
+            startActivity(Intent(this,NotificationHistoryScreen::class.java))
+        }
 
     }
 
