@@ -29,12 +29,28 @@ class PermissionScreen : AppCompatActivity() {
         setContentView(b.root)
 
 
+
+        if(SDK_INT >= TIRAMISU){
+            if (checkPermissions()) {
+                replaceActivity()
+            } else {
+                Toast.makeText(this, "Notification Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            replaceActivity()
+        }
+
+
+
+
+
         if (checkPermissions()) {
 //            Toast.makeText(this, "Notification Permission Granted", Toast.LENGTH_SHORT).show()
             replaceActivity()
         } else {
             Toast.makeText(this, "Notification Permission Denied", Toast.LENGTH_SHORT).show()
         }
+
 
 
 
