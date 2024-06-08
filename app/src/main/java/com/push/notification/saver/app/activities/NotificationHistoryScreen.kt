@@ -28,16 +28,25 @@ class NotificationHistoryScreen : AppCompatActivity() {
         b = ActivityNotificationHistoryScreenBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-
-        val db = NotificationDatabaseHelper(this)
-
+        val dbHelper = NotificationDatabaseHelper(applicationContext)
 
         notificationRecyclerView = b.notificationRV
-        notificationAdapter = NotificationAdapter(db.getAllNotifications())
+        notificationAdapter = NotificationAdapter(dbHelper.getAllNotifications())
         notificationRecyclerView.adapter = notificationAdapter
         notificationRecyclerView.layoutManager = LinearLayoutManager(this)
 
 
+        if(dbHelper.getAllNotifications().isEmpty()){
+            b.noNotification.visibility = android.view.View.VISIBLE
+
+        }else{
+            b.noNotification.visibility = android.view.View.GONE
+        }
+
+
+        b.backBtn.setOnClickListener{
+            finish()
+        }
 
 
 
