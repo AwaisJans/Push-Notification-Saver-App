@@ -1,5 +1,6 @@
 package com.push.notification.saver.app.activities
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -15,6 +16,8 @@ import com.push.notification.saver.app.adapter.NotificationAdapter
 import com.push.notification.saver.app.databinding.ActivityNotificationHistoryScreenBinding
 import com.push.notification.saver.app.db.NotificationDatabaseHelper
 import com.push.notification.saver.app.model.NotificationItem
+import java.util.Timer
+import java.util.TimerTask
 
 class NotificationHistoryScreen : AppCompatActivity() {
 
@@ -22,6 +25,7 @@ class NotificationHistoryScreen : AppCompatActivity() {
 
     private lateinit var notificationRecyclerView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
+    private lateinit var timer: Timer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,26 @@ class NotificationHistoryScreen : AppCompatActivity() {
         }else{
             b.noNotification.visibility = android.view.View.GONE
         }
+
+
+        timer = Timer()
+        timer.schedule(object : TimerTask() {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun run() {
+                runOnUiThread {
+                    notificationAdapter = NotificationAdapter(dbHelper.getAllNotifications())
+                    notificationRecyclerView.adapter = notificationAdapter
+                    notificationRecyclerView.layoutManager = LinearLayoutManager(this@NotificationHistoryScreen)
+                }
+            }
+        }, 0, 1000) // Update every 1000 milliseconds (1 second)
+
+
+
+
+
+
+
 
 
         b.backBtn.setOnClickListener{

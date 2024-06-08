@@ -70,7 +70,13 @@ class NotificationDatabaseHelper(context: Context) :
 
     fun deleteNotification(notificationTitle: String) {
         val db = this.writableDatabase
-        db.delete(TABLE_NAME, "$COLUMN_TITLE=?", arrayOf(notificationTitle))
-        db.close()
+        try {
+            db.delete(TABLE_NAME, "$COLUMN_TITLE=?", arrayOf(notificationTitle))
+        } catch (e: Exception) {
+            e.printStackTrace() // Log the exception
+        } finally {
+            db.close() // Ensure the database is closed even if an exception occurs
+        }
+
     }
 }
