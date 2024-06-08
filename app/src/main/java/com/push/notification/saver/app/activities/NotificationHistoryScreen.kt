@@ -11,9 +11,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.FirebaseDatabase
 import com.push.notification.saver.app.adapter.NotificationAdapter
 import com.push.notification.saver.app.databinding.ActivityNotificationHistoryScreenBinding
+import com.push.notification.saver.app.db.NotificationDatabaseHelper
 import com.push.notification.saver.app.model.NotificationItem
 
 class NotificationHistoryScreen : AppCompatActivity() {
@@ -22,15 +22,18 @@ class NotificationHistoryScreen : AppCompatActivity() {
 
     private lateinit var notificationRecyclerView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
-    private val notificationList = mutableListOf<NotificationItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivityNotificationHistoryScreenBinding.inflate(layoutInflater)
         setContentView(b.root)
 
+
+        val db = NotificationDatabaseHelper(this)
+
+
         notificationRecyclerView = b.notificationRV
-        notificationAdapter = NotificationAdapter(notificationList)
+        notificationAdapter = NotificationAdapter(db.getAllNotifications())
         notificationRecyclerView.adapter = notificationAdapter
         notificationRecyclerView.layoutManager = LinearLayoutManager(this)
 
